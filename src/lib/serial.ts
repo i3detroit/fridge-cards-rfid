@@ -12,14 +12,8 @@ const serial = new (dev ? SerialPortMock : SerialPort)({
     path: '/dev/ttyAMA0', baudRate: 2400
 });
 
-if (dev) {
-    serial.on('open', () => {
-        setTimeout(() => {
-            serial.port.emitData('11111111\r\n');
-        }, 750);
-    });
-}
-
 export const serialParser = serial.pipe(new ReadlineParser({
     delimiter: '\r\n'
 }));
+
+export const emitDemoTag = () => serial.port.emitData('11111111\r\n');

@@ -37,13 +37,13 @@
             required
         />
         <button type="submit">
-            <Icon icon="solar:check-circle-bold" class="icon" />
+            <Icon icon="ph:check-bold" class="icon" />
         </button>
         <a
             href="/logout"
             class="button button--small"
         >
-            <Icon icon="solar:logout-2-bold" />
+            <Icon icon="solar:logout-2-outline" />
         </a>
     </form>
 </div>

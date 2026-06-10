@@ -20,7 +20,7 @@
 
 <div class="confirmation-container">
     <Icon
-        icon="solar:check-circle-bold"
+        icon="ph:check-circle-fill"
         class="icon"
     />
     <h1>Come again soon!</h1>

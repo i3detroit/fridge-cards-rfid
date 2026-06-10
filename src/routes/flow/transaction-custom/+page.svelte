@@ -45,13 +45,13 @@
             required
         />
         <button type="submit">
-            <Icon icon="solar:check-circle-bold" class="icon" />
+            <Icon icon="ph:check-bold" class="icon" />
         </button>
         <a
             href="/flow/actions"
             class="button button--small"
         >
-            <Icon icon="solar:close-circle-bold" />
+            <Icon icon="ph:x-bold" />
         </a>
     </form>
 </div>

@@ -37,7 +37,7 @@
                     ". 0 {backspace}"
                 ]
             },
-            layoutName: type == 'number' ? 'numeric' : 'default',
+            layoutName: type == 'number' ? 'numeric' : 'shift',
             display: {
                 '{backspace}': 'backspace',
                 '{enter}': 'enter',

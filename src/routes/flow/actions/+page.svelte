@@ -34,7 +34,7 @@
             <input
                 type="hidden"
                 name="type"
-                value="withdraw"
+                value="purchase"
             />
             <button
                 type="submit"

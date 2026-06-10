@@ -35,7 +35,7 @@
             required
         />
         <button type="submit">
-            <Icon icon="solar:check-circle-bold" />
+            <Icon icon="solar:check-circle-bold" class="icon" />
         </button>
     </form>
 </div>

@@ -29,6 +29,7 @@ export const actions = {
             data: { balance: newBalance }
         });
 
-        return redirect(303, '/flow/confirmation');
+        const urlParams = new URLSearchParams({ type, amount, balance: newBalance });
+        return redirect(303, `/flow/confirmation?${urlParams}`);
     }
 } satisfies Actions;

@@ -82,3 +82,7 @@ button:disabled {
 input {
     padding: 0.5em;
 }
+
+p {
+    color: #d9d9d9;
+}

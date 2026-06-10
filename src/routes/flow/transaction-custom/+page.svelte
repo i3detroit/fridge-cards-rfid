@@ -1,13 +1,24 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
     import Input from '../../../components/Input.svelte';
-    import { userStore } from '$lib/stores.svelte';
+    import { userStore, setUserStore } from '$lib/stores.svelte';
     import { enhance } from "$app/forms";
     import { page } from "$app/state";
+    import { goto } from "$app/navigation";
 
     const { form } = $props();
 
     const type = page.url.searchParams.get('type');
+
+    $effect(() => {
+        if (form?.failure === false) {
+            const { type, amount } = form.transaction;
+                        setUserStore(form.user);
+
+            const urlParams = new URLSearchParams({ type, amount });
+            goto(`/flow/confirmation?${urlParams}`);
+        }
+    });
 </script>
 
 <div class="transaction-container">

@@ -1,4 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 import { prisma } from '../../../../prisma/index';
 
@@ -9,27 +9,26 @@ export const actions = {
         const id = data.get('id');
         const amount = parseFloat(parseFloat(data.get('amount')).toFixed(2));
 
-        const user = await prisma.users.findUnique({
+        const userInitial = await prisma.users.findUnique({
             select: { balance: true },
             where: { id }
         });
 
-        if (!id || !amount || isNaN(amount) || !user) {
+        if (!id || !amount || isNaN(amount) || !userInitial) {
             return fail(400, { failure: true });
         }
 
         const newBalance = type == 'deposit' ?
-            user.balance + amount : user.balance - amount;
+            userInitial.balance + amount : userInitial.balance - amount;
         if (newBalance < 0) {
             return fail(400, { failure: true });
         }
 
-        await prisma.users.update({
+        const user = await prisma.users.update({
             where: { id },
             data: { balance: newBalance }
         });
 
-        const urlParams = new URLSearchParams({ type, amount, balance: newBalance });
-        return redirect(303, `/flow/confirmation?${urlParams}`);
+        return { failure: false, user, transaction: { type, amount } };
     }
 } satisfies Actions;

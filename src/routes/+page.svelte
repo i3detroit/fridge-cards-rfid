@@ -72,6 +72,7 @@
     .demo-sequence button {
         position: absolute;
         background: none;
+        box-shadow: none;
         width: 15%;
         aspect-ratio: 1;
         cursor: initial;

@@ -2,22 +2,20 @@
     import Icon from '@iconify/svelte';
     import { page } from '$app/state';
     import { goto } from '$app/navigation';
-    import { clearUserStore } from '$lib/stores.svelte';
+    import { userStore, clearUserStore } from '$lib/stores.svelte';
 
-    const { type, amount, balance } = Object.fromEntries(
+    const { type, amount } = Object.fromEntries(
         page.url.searchParams.entries()
     );
+
+    const timeout = setTimeout(() => { clearUserStore(); goto('/') }, 5000);
+    const disableTimeout = () => clearTimeout(timeout);
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency', currency: 'USD'
     });
     const [ amountFormatted, balanceFormatted ] =
-        [ amount, balance ].map(value => formatter.format(parseFloat(value)));
-
-    $effect(() => {
-        clearUserStore();
-        setTimeout(() => goto('/'), 4000);
-    });
+        [ amount, userStore.balance ].map(value => formatter.format(parseFloat(value)));
 </script>
 
 <div class="confirmation-container">
@@ -33,6 +31,13 @@
     {:else if type == "withdraw"}
         <p>You withdrew {amountFormatted} and your balance is now {balanceFormatted}. Don't forget to take your cash from the box!</p>
     {/if}
+    <a
+        href="/flow/actions"
+        class="button"
+        onclick={ disableTimeout }
+    >
+        New Transaction
+    </a>
 </div>
 
 <style>
@@ -53,6 +58,10 @@
 
         :global(.icon) {
             font-size: 3em;
+        }
+
+        .button {
+            margin-top: 1em;
         }
     }
 </style>

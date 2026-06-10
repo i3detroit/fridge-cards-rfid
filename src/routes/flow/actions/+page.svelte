@@ -113,7 +113,6 @@
         button, 
         .button {
             width: 100%;
-            box-shadow: 0 0.125em 0.125em rgba(255, 255, 255, 0.5);
         }
         
         .button--large {

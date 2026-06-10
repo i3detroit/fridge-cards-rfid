@@ -2,6 +2,7 @@
     import Icon from "@iconify/svelte";
     import Input from '../../../components/Input.svelte';
     import { userStore, setUserStore } from '$lib/stores.svelte';
+    import { formErrorMessage } from '$lib/snippets.svelte';
     import { enhance } from "$app/forms";
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
@@ -13,7 +14,7 @@
     $effect(() => {
         if (form?.failure === false) {
             const { type, amount } = form.transaction;
-                        setUserStore(form.user);
+            setUserStore(form.user);
 
             const urlParams = new URLSearchParams({ type, amount });
             goto(`/flow/confirmation?${urlParams}`);
@@ -22,10 +23,8 @@
 </script>
 
 <div class="transaction-container">
-    {#if form?.failure}
-        <p>Error occurred while processing transaction.</p>
-    {/if}
     <h1>How much would you like to { type }?</h1>
+    {@render formErrorMessage(form)}
     <form
         class="input-row"
         method="POST"

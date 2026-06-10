@@ -3,6 +3,7 @@
     import Input from "../../../components/Input.svelte";
     import { enhance } from '$app/forms';
     import { userStore, setUserStore } from "$lib/stores.svelte";
+    import { formErrorMessage } from '$lib/snippets.svelte';
     import { goto } from "$app/navigation";
 
     const { form } = $props();
@@ -17,9 +18,7 @@
 
 <div class="create-container">
     <h1>You must be new! What would you like to be called?</h1>
-    {#if form?.failure}
-        <p>Error occurred while creating user.</p>
-    {/if}
+    {@render formErrorMessage(form)}
     <form
         class="input-row"
         method="POST"

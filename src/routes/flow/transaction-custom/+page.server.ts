@@ -21,7 +21,7 @@ export const actions = {
         const newBalance = type == 'deposit' ?
             userInitial.balance + amount : userInitial.balance - amount;
         if (newBalance < 0) {
-            return fail(400, { failure: true });
+            return fail(400, { failure: true, message: 'Insufficient funds to withdraw from.' });
         }
 
         const user = await prisma.users.update({

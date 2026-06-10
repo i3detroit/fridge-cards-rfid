@@ -1,9 +1,21 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
-    import { userStore } from '$lib/stores.svelte';
+    import { userStore, setUserStore } from '$lib/stores.svelte';
+    import { formErrorMessage } from '$lib/snippets.svelte';
     import { enhance } from '$app/forms';
+    import { goto } from '$app/navigation';
 
     const { form } = $props();
+
+    $effect(() => {
+        if (form?.failure === false) {
+            const { type, amount } = form.transaction;
+            setUserStore(form.user);
+
+            const urlParams = new URLSearchParams({ type, amount });
+            goto(`/flow/confirmation?${urlParams}`);
+        }
+    });
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency', currency: 'USD'
@@ -12,9 +24,7 @@
 </script>
 
 <div class="actions-container">
-    {#if form?.failure}
-        <p>Error occurred while processing transaction.</p>
-    {/if}
+    {@render formErrorMessage(form)}
     <div class="header-block">
         <h1>Hi, {userStore.name}.</h1>
         <p class="balance-info">{balanceFormatted}</p>

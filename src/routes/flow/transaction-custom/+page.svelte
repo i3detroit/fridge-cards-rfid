@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Icon from "@iconify/svelte";
     import Input from '../../../components/Input.svelte';
     import { userStore } from '$lib/stores.svelte';
     import { enhance } from "$app/forms";
@@ -7,18 +8,15 @@
     const { form } = $props();
 
     const type = page.url.searchParams.get('type');
-    const typeFormatted = type.charAt(0).toUpperCase() + type.slice(1);
 </script>
 
 <div class="transaction-container">
     {#if form?.failure}
         <p>Error occurred while processing transaction.</p>
     {/if}
-    <h1>{ typeFormatted }</h1>
-    <a href="/flow/actions">
-        Back
-    </a>
+    <h1>How much would you like to { type }?</h1>
     <form
+        class="input-row"
         method="POST"
         use:enhance
     >
@@ -33,18 +31,17 @@
             min="0"
             max="50"
             step="0.01"
+            placeholder="0.00"
             required
         />
         <button type="submit">
-            Submit
+            <Icon icon="solar:check-circle-bold" class="icon" />
         </button>
+        <a
+            href="/flow/actions"
+            class="button button--small"
+        >
+            <Icon icon="solar:close-circle-bold" />
+        </a>
     </form>
 </div>
-
-<style>
-    .transaction-container {
-        input {
-            width: 100%;
-        }
-    }
-</style>

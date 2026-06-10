@@ -2,14 +2,9 @@
     import Icon from "@iconify/svelte";
     import Input from "../../../components/Input.svelte";
     import { enhance } from '$app/forms';
-    import type { Action } from 'svelte/action';
     import { userStore } from "$lib/stores.svelte";
 
     const { form } = $props();
-
-	const focusOnMount: Action = node => {
-		$effect(() => node.focus());
-    };
 </script>
 
 <div class="create-container">
@@ -37,22 +32,11 @@
         <button type="submit">
             <Icon icon="solar:check-circle-bold" class="icon" />
         </button>
+        <a
+            href="/logout"
+            class="button button--small"
+        >
+            <Icon icon="solar:logout-2-bold" />
+        </a>
     </form>
 </div>
-
-<style>
-    .input-row {
-        display: flex;
-        gap: 0.5em;
-        margin-block: 1.5em;
-
-        :global(input),
-        button {
-        font-size: 1.5em;
-        }
-
-        input {
-            flex-grow: 1;
-        }
-    }
-</style>

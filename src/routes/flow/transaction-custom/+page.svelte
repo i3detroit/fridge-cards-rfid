@@ -1,6 +1,6 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
-    import Input from '../../../components/Input.svelte';
+    import Input from '$components/Input.svelte';
     import { userStore, setUserStore } from '$lib/stores.svelte';
     import { formErrorMessage } from '$lib/snippets.svelte';
     import { enhance } from "$app/forms";

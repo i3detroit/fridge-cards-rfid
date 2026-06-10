@@ -8,6 +8,7 @@ export const POST = () => {
     return produce(async ({ emit }) => {
         serialParser.on('data', async (newID: string) => {
             // Don't emit multiple events if a tag is held for awhile
+            newID = newID.trim();
             if (newID == lastID) { return; }
             lastID = newID;
             

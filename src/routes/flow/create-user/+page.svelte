@@ -2,9 +2,17 @@
     import Icon from "@iconify/svelte";
     import Input from "../../../components/Input.svelte";
     import { enhance } from '$app/forms';
-    import { userStore } from "$lib/stores.svelte";
+    import { userStore, setUserStore } from "$lib/stores.svelte";
+    import { goto } from "$app/navigation";
 
     const { form } = $props();
+
+    $effect(() => {
+        if (form?.failure === false) {
+            setUserStore(form.user);
+            goto('/flow/actions');
+        }
+    });
 </script>
 
 <div class="create-container">

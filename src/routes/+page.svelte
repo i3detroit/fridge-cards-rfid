@@ -1,21 +1,29 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
     import { source } from 'sveltekit-sse';
+    import { goto } from '$app/navigation';
+    import { setUserStore } from '$lib/stores.svelte';
+    import type { Users } from '@prisma-app/client';
 
-    const value = source('/scan').select('message');
+    const data = source('/api/rfid-events').select('data');
+    $effect(() => {
+        if (!$data) { return; }
+        const user: Users = JSON.parse($data);
+        setUserStore(user);
+
+        if (!user.name) {
+            goto('/flow/create-user');
+        } else {
+            goto('/flow/actions');
+        }
+    });
 </script>
 
 <div class="waiting-container">
-    <p>{$value}</p>
     <p>Swipe RFID key to begin.</p>
     <Icon
         class="icon"
         icon="solar:key-minimalistic-square-3-line-duotone"
-        aria-hidden="true"
-    />
-    <Icon
-        class="icon"
-        icon="solar:alt-arrow-down-linear"
         aria-hidden="true"
     />
 </div>
@@ -25,14 +33,10 @@
         display: flex;
         height: 100%;
         flex-direction: column;
-        gap: 0.5em;
+        gap: 1em;
         text-align: center;
         align-items: center;
-        justify-content: end;
-
-        p {
-            margin-block: 1em;
-        }
+        justify-content: center;
 
         :global(.icon) {
             font-size: 2em;

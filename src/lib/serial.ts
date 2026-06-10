@@ -16,7 +16,7 @@ if (dev) {
     serial.on('open', () => {
         setTimeout(() => {
             serial.port.emitData('11111111\r\n');
-        }, 5000);
+        }, 750);
     });
 }
 

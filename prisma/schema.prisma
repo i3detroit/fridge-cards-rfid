@@ -1,0 +1,14 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/@prisma-app/client"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Users {
+  id      String  @id
+  name    String
+  balance Float   @default(0)
+}

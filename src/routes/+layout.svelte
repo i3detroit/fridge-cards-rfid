@@ -5,6 +5,10 @@
 	let { children } = $props();
 </script>
 
+<svelte:head>
+	<title>Fridge Cards</title>
+</svelte:head>
+
 <div class="container">
 	{@render children()}
 </div>
@@ -16,7 +20,7 @@
 		height: 480px;
 		background: #000;
 		margin: auto;
-		padding: 2em;
+		padding: 2.75em 2em;
 		box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
 	}
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
+    import Input from "../../../components/Input.svelte";
     import { enhance } from '$app/forms';
     import type { Action } from 'svelte/action';
     import { userStore } from "$lib/stores.svelte";
@@ -21,8 +22,7 @@
         method="POST"
         use:enhance
     >
-        <input
-            use:focusOnMount
+        <Input
             type="text"
             name="name"
             placeholder="Name"
@@ -42,11 +42,14 @@
 
 <style>
     .input-row {
-        width: 80%;
         display: flex;
         gap: 0.5em;
         margin-block: 1.5em;
+
+        :global(input),
+        button {
         font-size: 1.5em;
+        }
 
         input {
             flex-grow: 1;

@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Input from '../../../components/Input.svelte';
     import { userStore } from '$lib/stores.svelte';
     import { enhance } from "$app/forms";
     import { page } from "$app/state";
@@ -26,7 +27,7 @@
             name="id"
             value={userStore.id}
         />
-        <input
+        <Input
             type="number"
             name="amount"
             min="0"

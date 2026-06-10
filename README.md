@@ -1,42 +1,31 @@
-# sv
+# RFID Fridge Cards
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Getting Started
 
-## Creating a project
+First, you need to initialize a database:
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```sh
-# create a new project
-npx sv create my-app
+```
+npx prisma generate
+npx prisma db push
 ```
 
-To recreate this project with the same configuration:
+If you change the schema, you'll need to run it again.
 
-```sh
-# recreate this project
-npx sv@0.15.3 create --template minimal --types ts --add sveltekit-adapter="adapter:node" --install npm ./
+### Development
+
+You can host a hot-reload server locally with:
+
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+Chances are you don't have an RFID sensor hooked up, so just log in to a demo account by tapping the corners of the start screen in a clockwise order.
 
-To create a production version of your app:
+### Production
 
-```sh
+Build and run the production copy with:
+
+```
 npm run build
+npm start
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.

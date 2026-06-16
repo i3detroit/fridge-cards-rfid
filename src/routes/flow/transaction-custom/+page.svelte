@@ -1,5 +1,7 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
+    import iconCheck from '@iconify-icons/ph/check-bold';
+    import iconClose from '@iconify-icons/ph/x-bold';
     import Input from '$components/Input.svelte';
     import { userStore, setUserStore } from '$lib/stores.svelte';
     import { formErrorMessage } from '$lib/snippets.svelte';
@@ -46,13 +48,13 @@
                 required
             />
             <button type="submit">
-                <Icon icon="ph:check-bold" class="icon" />
+                <Icon icon={iconCheck} class="icon" />
             </button>
             <a
                 href="/flow/actions"
                 class="button button--small"
             >
-                <Icon icon="ph:x-bold" />
+                <Icon icon={iconClose} />
             </a>
         </form>
     </div>

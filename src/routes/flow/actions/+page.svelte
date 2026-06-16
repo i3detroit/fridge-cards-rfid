@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import iconLogout from '@iconify-icons/solar/logout-2-outline';
     import { userStore } from '$lib/stores.svelte';
     import { formErrorMessage } from '$lib/snippets.svelte';
 
@@ -69,7 +70,7 @@
                 href="/logout"
                 class="button button--small"
             >
-                <Icon icon="solar:logout-2-outline" />
+                <Icon icon={iconLogout} />
             </a>
         </div>
     </form>

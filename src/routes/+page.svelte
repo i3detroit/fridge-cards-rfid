@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import iconKey from '@iconify-icons/solar/key-minimalistic-square-3-line-duotone';
     import { source } from 'sveltekit-sse';
     import { goto } from '$app/navigation';
     import { setUserStore } from '$lib/stores.svelte';
@@ -31,7 +32,7 @@
     <p>Swipe RFID key to begin.</p>
     <Icon
         class="icon"
-        icon="solar:key-minimalistic-square-3-line-duotone"
+        icon={iconKey}
         aria-hidden="true"
     />
     <div class="demo-sequence">

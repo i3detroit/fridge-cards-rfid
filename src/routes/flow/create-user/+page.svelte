@@ -1,5 +1,7 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
+    import iconCheck from '@iconify-icons/ph/check-bold';
+    import iconLogout from '@iconify-icons/solar/logout-2-outline';
     import Input from "$components/Input.svelte";
     import { enhance } from '$app/forms';
     import { userStore, setUserStore } from "$lib/stores.svelte";
@@ -37,13 +39,13 @@
             required
         />
         <button type="submit">
-            <Icon icon="ph:check-bold" class="icon" />
+            <Icon icon={iconCheck} class="icon" />
         </button>
         <a
             href="/logout"
             class="button button--small"
         >
-            <Icon icon="solar:logout-2-outline" />
+            <Icon icon={iconLogout} />
         </a>
     </form>
 </div>

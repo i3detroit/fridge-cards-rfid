@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+    import iconCheckFill from '@iconify-icons/ph/check-circle-fill';
     import { page } from '$app/state';
     import { goto } from '$app/navigation';
     import { userStore, clearUserStore } from '$lib/stores.svelte';
@@ -20,7 +21,7 @@
 
 <div class="confirmation-container">
     <Icon
-        icon="ph:check-circle-fill"
+        icon={iconCheckFill}
         class="icon"
     />
     <h1>Come again soon!</h1>

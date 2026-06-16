@@ -17,7 +17,7 @@ if (dev) {
 }
 
 export const serialParser = serial.pipe(new ReadlineParser({
-    delimiter: '\r\n'
+    delimiter: '\r'
 }));
 
 export const emitDemoTag = () => serial.port.emitData('11111111\r\n');

@@ -1,5 +1,5 @@
 import { produce } from 'sveltekit-sse';
-import { serialParser } from '$lib/serial';
+import { serialParser, beepBuzzer } from '$lib/serial';
 import { prisma } from '../../../../prisma/index';
 
 export const POST = () => {
@@ -11,7 +11,9 @@ export const POST = () => {
             newID = newID.trim();
             if (newID == lastID) { return; }
             lastID = newID;
-            
+
+            beepBuzzer();
+
             const payload = await prisma.users.findUnique({
                 select: { id: true, name: true, balance: true },
                 where: { id: newID }

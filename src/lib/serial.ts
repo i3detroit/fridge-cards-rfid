@@ -12,9 +12,7 @@ const serial = new (dev ? SerialPortMock : SerialPort)({
     path: '/dev/ttyAMA0', baudRate: 2400
 });
 
-if (dev) {
-    serial.on('data', data => console.log('Serial data:', data.toString().trim()));
-}
+serial.on('data', data => console.log('Serial data:', data.toString().trim()));
 
 export const serialParser = serial.pipe(new ReadlineParser({
     delimiter: '\r'

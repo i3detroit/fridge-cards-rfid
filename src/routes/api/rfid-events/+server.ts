@@ -4,11 +4,27 @@ import { prisma } from '../../../../prisma/index';
 
 export const POST = () => {
     let lastID: string;
+    let lastReadID: string;
+    let readIndex: number = 0;
 
     return produce(async ({ emit }) => {
         serialParser.on('data', async (newID: string) => {
             // Don't emit multiple events if a tag is held for awhile
             newID = newID.trim();
+            if (readIndex == 0)
+            {
+                lastReadID = newID;
+                readIndex = 1;
+                return;
+            }
+            else if (readIndex == 1)
+            {
+                readIndex = 0;
+                if (newID != lastReadID)
+                {
+                    return;
+                }
+            }
             if (newID == lastID) { return; }
             lastID = newID;
 
